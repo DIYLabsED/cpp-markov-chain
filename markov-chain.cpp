@@ -32,6 +32,7 @@ MarkovChain train(string ftext){
 
   }
 
+  trainingText.close();
   return chain;
 
 }
