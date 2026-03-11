@@ -3,11 +3,13 @@
 #include <map>
 #include <vector>
 #include <cstdlib>
+#include <string>
 
 using namespace std;
 using MarkovChain = map<string, vector<string>>;
 
 MarkovChain train(string ftext);
+void printChain(MarkovChain chain);
 string* generate(MarkovChain chain, unsigned int wordCount);
 
 // Takes in a filepath to a text file, returns a trained markov chain
@@ -33,7 +35,30 @@ MarkovChain train(string ftext){
   }
 
   trainingText.close();
+  printChain(chain);
   return chain;
+
+}
+
+void printChain(MarkovChain chain){
+
+  if(chain.empty()) return;
+
+  cout << endl << endl << "Markov Chain:" << endl;
+
+  for(auto word : chain){
+
+    cout << word.first << " - ";
+
+    for(auto nextWords : word.second){
+      cout << nextWords << ", ";
+    }
+
+    cout << endl;
+
+  }
+
+  cout << endl << endl;
 
 }
 
